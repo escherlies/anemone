@@ -74,14 +74,6 @@ header_nav = [
 ]
 ```
 
-#### Default Theme
-
-To configure the default theme, simply utilize the `default_theme` variable and set it to either `light` or `dark`:
-
-```toml
-[extra]
-default_theme = "light"
-```
 
 #### Display Author Name in Blog Posts
 

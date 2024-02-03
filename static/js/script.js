@@ -1,21 +1,41 @@
-const setTheme = (theme) => {
-  document.documentElement.className = theme;
-  localStorage.setItem('theme', theme);
+const darkSchemeMatchMedia = window.matchMedia('(prefers-color-scheme: dark)')
+
+
+/**
+ * 
+ * @param {string} theme "light", "dark" or "auto"
+ */
+const setTheme = (prefers) => {
+  localStorage.setItem('prefersTheme', prefers);
+
+  const themeClassName = (() => {
+    if (prefers === 'auto') {
+      return darkSchemeMatchMedia.matches ? 'dark' : 'light';
+    }
+    return prefers;
+  })()
+
+  // set the theme
+  document.documentElement.className = themeClassName;
+
+  // close the menu
+  const themeMenuCheckbox = document.getElementById('themeMenuCheckbox');
+  themeMenuCheckbox.checked = false;
 }
 
-const hasCodeRun = localStorage.getItem('hasCodeRun');
-
-if (!hasCodeRun) {
-  const defaultTheme = "{{ config.extra.default_theme }}";
-  setTheme(defaultTheme);
-  localStorage.setItem('hasCodeRun', 'true');
-}
 
 const getTheme = () => {
-  const theme = localStorage.getItem('theme');
-  if (theme) {
-    setTheme(theme);
-  }
+  const theme = localStorage.getItem('prefersTheme');
+  return theme ? theme : "auto"
 }
 
-getTheme();
+const initialize = () => {
+  const theme = getTheme();
+  setTheme(theme);
+}
+
+
+// Event listeners for the theme change
+darkSchemeMatchMedia.addEventListener('change', initialize)
+
+initialize()

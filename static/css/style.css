@@ -254,11 +254,6 @@ textarea {
   background-color: transparent;
 }
 
-.icons__background:hover {
-  background-color: transparent;
-  color: var(--metaColor);
-}
-
 .navBar {
   padding: 1rem 0 0 0;
   display: flex;
@@ -268,22 +263,6 @@ textarea {
   justify-content: flex-end;
   align-items: center;
   align-content: flex-end
-}
-
-.themeButton {
-  cursor: pointer;
-  border: none;
-  font-size: 1.8rem;
-  background-color: transparent
-}
-
-.dark .themeButton.dark,
-.themeButton.light {
-  display: none
-}
-
-.dark .themeButton.light {
-  display: block
 }
 
 .tagsData {
@@ -347,4 +326,66 @@ textarea {
   .wrapper {
     margin: 1rem;
   }
+}
+
+
+/* Theme Switch */
+.themeButton {
+  cursor: pointer;
+  border: none;
+  color: var(--bgColor);
+  background-color: transparent;
+  display: none;
+}
+
+
+.themeSwitch {
+  position: relative;
+  display: inline-block;
+}
+
+.themeMenuCheckbox {
+  display: none;
+}
+
+
+.themeMenuButton {
+  display: inline-block;
+  cursor: pointer;
+  color: var(--bgColor);
+}
+
+.themeButton:nth-child(2) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.icons__background {
+  background-color: transparent;
+  color: var(--bgColor);
+}
+
+.themeMenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: var(--metaColor);
+  color: var(--bgColor);
+  padding: .5rem .5rem;
+  border: 2px solid var(--metaColor);
+}
+
+.themeMenu > .icons {
+  color: var(--bgColor);
+}
+
+.themeMenu button {
+  text-decoration: none;
+  display: block;
+}
+
+.themeMenuCheckbox:checked + .themeMenuButton + .themeMenu {
+  display: block;
 }
